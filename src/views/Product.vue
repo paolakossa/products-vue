@@ -3,7 +3,12 @@
     <nav class="nav">
       <a class="nav-link" href="#">Produtos</a>
     </nav>
-
+    <api-button class="btn-adicionar" @input="openModalForm">Adicionar produto +</api-button>
+    <modal-direction
+    name-modal="form"
+    title-modal="Adicione um produto"
+    icon-modal-close="fa-solid fa-xmark"
+    ></modal-direction>
     <div class="container">
       <div v-for="product in products" :key="product.id" class="card">
         <div class="content">
@@ -83,6 +88,9 @@ export default {
     this.setProduct = product
       this.$root.$emit('open-modal-info')
     },
+    openModalForm(){
+      this.$root.$emit('open-modal-form')
+    },
     edit(payload) {
       this.id = payload.id
       this.form = {
@@ -129,6 +137,10 @@ export default {
       color: #fff
   .btn
     margin-left:30px
+    &-adicionar
+      margin-top: 10px
+      display: flex
+      justify-content: center
   .list
     display: flex
     flex-direction: column
